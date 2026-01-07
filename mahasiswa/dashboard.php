@@ -511,8 +511,6 @@ $result_fasilitas = $recent_fasilitas->get_result();
 </head>
 <body>
     <div class="dashboard">
-
-        <!-- ================= HEADER ================= -->
         <div class="dashboard-header">
             <div class="container">
                 <div class="dashboard-nav" style="justify-content: flex-start;">
@@ -536,11 +534,10 @@ $result_fasilitas = $recent_fasilitas->get_result();
             </div>
         </div>
 
-        <!-- ================= CONTENT ================= -->
+
         <div class="dashboard-content">
             <div class="container">
 
-                <!-- Statistik -->
                 <div class="stats-grid">
 
                     <div class="stat-card">
@@ -575,7 +572,6 @@ $result_fasilitas = $recent_fasilitas->get_result();
 
                 </div>
 
-                <!-- ================= TABEL RUANGAN ================= -->
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Peminjaman Ruangan Terbaru</h2>
@@ -643,7 +639,6 @@ $result_fasilitas = $recent_fasilitas->get_result();
                 </div>
 
 
-                <!-- ================= TABEL FASILITAS ================= -->
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Peminjaman Fasilitas Terbaru</h2>

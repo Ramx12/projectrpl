@@ -494,9 +494,8 @@ $result_fasilitas = $stmt_fasilitas->get_result();
 
                     <div class="dashboard-title">
                         <h1><i class="fas fa-history"></i> Riwayat Peminjaman</h1>
-                        <p>Selamat datang, <?= htmlspecialchars($user_nama) ?> (<?= htmlspecialchars($user_nim) ?>)</p>
+                        <p>Lihat Riwayat ruangan dan fasilitas yang pernah anda pinjam</p>
                     </div>
-
                     <div class="user-info">
                         <span><?= htmlspecialchars($user_nama) ?></span>
                         <a href="../logout.php" class="logout-btn">Logout</a>

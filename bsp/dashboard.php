@@ -72,9 +72,9 @@ $total_fasilitas = $conn->query("SELECT COUNT(*) as total FROM fasilitas")->fetc
 $total_pending = $conn->query("SELECT COUNT(*) as total FROM peminjaman_fasilitas WHERE status = 'pending'")->fetch_assoc()['total'];
 $total_disetujui = $conn->query("SELECT COUNT(*) as total FROM peminjaman_fasilitas WHERE status = 'disetujui'")->fetch_assoc()['total'];
 
-// Get pending bookings
+// Get pending bookings - TAMBAHKAN u.prodi
 $pending_query = "
-    SELECT pf.*, f.nama_fasilitas, f.kategori, u.nama as nama_peminjam, u.nim 
+    SELECT pf.*, f.nama_fasilitas, f.kategori, u.nama as nama_peminjam, u.nim, u.prodi 
     FROM peminjaman_fasilitas pf
     JOIN fasilitas f ON pf.fasilitas_id = f.id
     JOIN users u ON pf.user_id = u.id
@@ -83,9 +83,9 @@ $pending_query = "
 ";
 $pending_result = $conn->query($pending_query);
 
-// Get approved bookings
+// Get approved bookings - TAMBAHKAN u.prodi
 $approved_query = "
-    SELECT pf.*, f.nama_fasilitas, f.kategori, u.nama as nama_peminjam, u.nim 
+    SELECT pf.*, f.nama_fasilitas, f.kategori, u.nama as nama_peminjam, u.nim, u.prodi 
     FROM peminjaman_fasilitas pf
     JOIN fasilitas f ON pf.fasilitas_id = f.id
     JOIN users u ON pf.user_id = u.id
@@ -711,7 +711,7 @@ $approved_result = $conn->query($approved_query);
                 </div>
                 <div class="dashboard-menu">
                     <a href="dashboard.php" class="active"><i class="fas fa-home"></i> Dashboard</a>
-                    <a href="fasilitas.php"><i class="fas fa-door-open"></i> Kelola Fasilitas</a>
+                    <a href="fasilitas.php"><i class="fas fa-tools"></i> Kelola Fasilitas</a>
                     <a href="riwayatpeminjaman.php"><i class="fas fa-list"></i> Semua Peminjaman</a>
                 </div>
             </div>
@@ -777,7 +777,8 @@ $approved_result = $conn->query($approved_query);
                                         <tr>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_peminjam']) ?></strong><br>
-                                                <small><?= htmlspecialchars($row['nim']) ?></small>
+                                                <small><?= htmlspecialchars($row['nim']) ?></small><br>
+                                                <small><?= htmlspecialchars($row['prodi']) ?></small>
                                             </td>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_fasilitas']) ?></strong><br>
@@ -833,7 +834,8 @@ $approved_result = $conn->query($approved_query);
                                         <tr>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_peminjam']) ?></strong><br>
-                                                <small><?= htmlspecialchars($row['nim']) ?></small>
+                                                <small><?= htmlspecialchars($row['nim']) ?></small><br>
+                                                <small><?= htmlspecialchars($row['prodi']) ?></small>
                                             </td>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_fasilitas']) ?></strong><br>

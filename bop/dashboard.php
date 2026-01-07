@@ -73,9 +73,9 @@ $total_ruangan = $conn->query("SELECT COUNT(*) as total FROM ruangan")->fetch_as
 $total_pending = $conn->query("SELECT COUNT(*) as total FROM peminjaman_ruangan WHERE status = 'pending'")->fetch_assoc()['total'];
 $total_disetujui = $conn->query("SELECT COUNT(*) as total FROM peminjaman_ruangan WHERE status = 'disetujui'")->fetch_assoc()['total'];
 
-// Get pending bookings
+// Get pending bookings - TAMBAHKAN u.prodi
 $pending_query = "
-    SELECT pr.*, r.nama_ruangan, r.gedung, u.nama as nama_peminjam, u.nim 
+    SELECT pr.*, r.nama_ruangan, r.gedung, u.nama as nama_peminjam, u.nim, u.prodi 
     FROM peminjaman_ruangan pr
     JOIN ruangan r ON pr.ruangan_id = r.id
     JOIN users u ON pr.user_id = u.id
@@ -84,9 +84,9 @@ $pending_query = "
 ";
 $pending_result = $conn->query($pending_query);
 
-// Get approved bookings
+// Get approved bookings - TAMBAHKAN u.prodi
 $approved_query = "
-    SELECT pr.*, r.nama_ruangan, r.gedung, u.nama as nama_peminjam, u.nim 
+    SELECT pr.*, r.nama_ruangan, r.gedung, u.nama as nama_peminjam, u.nim, u.prodi 
     FROM peminjaman_ruangan pr
     JOIN ruangan r ON pr.ruangan_id = r.id
     JOIN users u ON pr.user_id = u.id
@@ -778,7 +778,8 @@ $approved_result = $conn->query($approved_query);
                                         <tr>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_peminjam']) ?></strong><br>
-                                                <small><?= htmlspecialchars($row['nim']) ?></small>
+                                                <small><?= htmlspecialchars($row['nim']) ?></small><br>
+                                                <small><?= htmlspecialchars($row['prodi']) ?></small>
                                             </td>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_ruangan']) ?></strong><br>
@@ -832,7 +833,8 @@ $approved_result = $conn->query($approved_query);
                                         <tr>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_peminjam']) ?></strong><br>
-                                                <small><?= htmlspecialchars($row['nim']) ?></small>
+                                                <small><?= htmlspecialchars($row['nim']) ?></small><br>
+                                                <small><?= htmlspecialchars($row['prodi']) ?></small>
                                             </td>
                                             <td>
                                                 <strong><?= htmlspecialchars($row['nama_ruangan']) ?></strong><br>

@@ -20,6 +20,11 @@ if (isLoggedIn()) {
 }
 
 $error = "";
+$success = "";
+if (isset($_SESSION['registration_success'])) {
+    $success = $_SESSION['registration_success'];
+    unset($_SESSION['registration_success']);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = input($_POST['username']);
@@ -218,6 +223,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
+            border: 1px solid;
+            background-color: #1e40af;
+            color: white;
         }
 
         .btn-login::before {
@@ -271,6 +279,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             animation: shakeError 0.5s ease;
         }
 
+        .alert-success {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
         .form-group {
             position: relative;
         }
@@ -295,7 +309,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-
 <div class="login-container">
     <div class="login-box">
         <div class="login-header">
@@ -308,6 +321,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="alert alert-error">
                 <i class="fas fa-exclamation-circle"></i>
                 <?php echo implode('<br>', $error); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($success)): ?>
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>
+                <?= htmlspecialchars($success) ?>
             </div>
         <?php endif; ?>
 
@@ -332,7 +352,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="login-footer">
             <p style="color: #6b7280; font-size: 0.9rem;">
-                <i class="fas fa-info-circle"></i> Gunakan NIM untuk mahasiswa atau username untuk staff
+                <i class="fas fa-info-circle"></i> Gunakan NIM untuk mahasiswa atau username untuk staff<br>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-top: 10px;">
+                    Belum punya akun? <a href="./register.php" style="color: #3b82f6; font-weight: 600; text-decoration: none;">Daftar di sini</a>
+                </p>
             </p>
         </div>
     </div>

@@ -166,7 +166,7 @@ $ruangan_result = $conn->query($ruangan_query);
     <title>Peminjaman Ruangan - UMB Booking System</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+     <style>
         /* Enhanced Dashboard Styles */
         .dashboard-header {
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%);
